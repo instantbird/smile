@@ -1,0 +1,30 @@
+#emoticonAnchor {
+  width: 16px;
+  height: 16px;
+  max-width: 16px;
+  max-height: 16px;
+  margin: 2px 4px 2px 4px;
+}
+
+#emoticonPanel .panel-inner-arrowcontent {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 5px;
+}
+
+.smileItem {
+  margin: 1px;
+  padding: 4px;
+  border: 1px solid;
+  border-color: transparent;
+  border-radius: 1.5px;
+  -moz-transition-property: border-color, background-color;
+  -moz-transition-duration: 0.1s;
+  -moz-transition-timing-function: ease-in;
+}
+
+.smileItem:hover {
+  border-color: blue;
+  background-color: lightblue;
+}

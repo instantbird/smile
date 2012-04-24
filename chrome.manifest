@@ -1,0 +1,3 @@
+content smile chrome/content/
+
+overlay chrome://instantbird/content/instantbird.xul chrome://smile/content/smile.xul

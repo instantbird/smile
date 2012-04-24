@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://smile/content/smile.css" type="text/css"?>
+
+<overlay id="smile"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <script type="application/javascript" src="chrome://smile/content/smile.js"/>
+  <statusbar id="convWindow-statusbar">
+    <hbox position="1">
+      <image id="emoticonAnchor" 
+             src="chrome://smile/content/grin.png"
+             onclick="smile.openPanel();"
+             style="width:16px; height:16px" />
+    </hbox>
+    <panel id="emoticonPanel" type="arrow" onpopupshowing="smile.createPanelContents()">
+      <grid>
+        <columns id="emoticonPanelColumns"/>
+        <rows id="emoticonPanelRows"/>
+      </grid>
+    </panel>
+
+  </statusbar>
+</overlay>
