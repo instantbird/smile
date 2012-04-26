@@ -1,24 +1,34 @@
 Components.utils.import("resource:///modules/imServices.jsm");
-let smile = {
-  _smileyThemeName: "",
-  _smileyList: [],
 
+let smile = {
+  _smileyThemePref: "messenger.options.emoticonsTheme",
+
+  handleEvent: function(event) {
+    this.updateUI();
+    Services.prefs.addObserver(this._smileyThemePref, this, false);
+    window.removeEventListener("load", this);
+  },
+  observe: function() {
+    this.updateUI();
+  },
+
+  updateUI: function() {
+    this.createPanelContents();
+    let anchor = document.getElementById("emoticonAnchor");
+
+    // TODO: Maybe make sure that there are emoticons in the current theme.
+    if (Services.prefs.getCharPref(this._smileyThemePref) == "none") {
+      anchor.setAttribute("disabled","true");
+    } else {
+      anchor.removeAttribute("disabled");
+    }
+  },
   createPanelContents: function smile_creatPanelContents() {
     Components.utils.import("resource:///modules/imSmileys.jsm"); 
 
-    const kEmoticonThemePref = "messenger.options.emoticonsTheme";
-    // Return early if disabled ("none") or still the same theme as last time.
-    if(this._smileyThemeName == "none" ||
-       this._smileyThemeName == Services.prefs.getCharPref(kEmoticonThemePref))
-      return;
-    
-    // Set name of currently selected theme. To check later if we need to 
-    //   rebuild the panel contents.
-    this._smileyThemeName = Services.prefs.getCharPref(kEmoticonThemePref);
-    
     let smileyList = getSmileyList();
     let panel = document.getElementById("emoticonPanel");
-    
+
     /* Calculate ideal dimensions of grid (x * y) based on number of smileys. 
         Start from a square, try to get a grid with filled rows and columns;
         if that fails, take a square and let a few fields empty at the end.
@@ -48,7 +58,7 @@ let smile = {
     while (columns.firstChild)
       columns.removeChild(columns.firstChild);
 
-    // Fill with new values.
+    // Fill columns with new values.
     for(let i = 0; i < columnCount; i++){
       let column = document.createElement("column");
       column.setAttribute("flex", "1");
@@ -61,7 +71,7 @@ let smile = {
     while (rows.firstChild)
       rows.removeChild(rows.firstChild);
 
-    // Fill them with new values.
+    // Fill rows with new values.
     let i = 0;
     for (let y = 0; y < rowCount; y++) {
       let newRow = document.createElement("row");
@@ -87,7 +97,8 @@ let smile = {
     let panel  = document.getElementById("emoticonPanel");
     // Move popup anchor eight pixels (half width of the emoticon) to the right
     //panel.openPopup(anchor, "before_start", 8, 0, false, false, null);
-    panel.openPopup(anchor, "after_start", 8, 0, false, false, null);
+    if (!anchor.hasAttribute("disabled"))
+      panel.openPopup(anchor, "after_start", 8, 0, false, false, null);
   },
 
   paste: function smile_paste(aText) {
@@ -103,3 +114,5 @@ let smile = {
      }
    }
 };
+
+window.addEventListener("load", smile);

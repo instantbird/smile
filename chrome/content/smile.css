@@ -6,6 +6,10 @@
   margin: 2px 4px 2px 4px;
 }
 
+#emoticonAnchor[disabled] {
+  filter: url("chrome://mozapps/skin/extensions/extensions.svg#greyscale");
+}
+
 #emoticonPanel .panel-inner-arrowcontent {
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 3px;

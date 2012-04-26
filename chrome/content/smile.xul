@@ -12,7 +12,7 @@
              onclick="smile.openPanel();"
              style="width:16px; height:16px" />
     </hbox>
-    <panel id="emoticonPanel" type="arrow" onpopupshowing="smile.createPanelContents()">
+    <panel id="emoticonPanel" type="arrow">
       <grid>
         <columns id="emoticonPanelColumns"/>
         <rows id="emoticonPanelRows"/>
