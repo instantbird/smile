@@ -6,11 +6,10 @@
 
   <script type="application/javascript" src="chrome://smile/content/smile.js"/>
   <statusbar id="convWindow-statusbar">
-    <hbox position="1">
+    <hbox position="1" align="center" pack="center">
       <image id="emoticonAnchor" 
              src="chrome://smile/content/grin.png"
-             onclick="smile.openPanel();"
-             style="width:16px; height:16px" />
+             onclick="smile.openPanel();"/>
     </hbox>
     <panel id="emoticonPanel" type="arrow">
       <grid>

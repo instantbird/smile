@@ -4,7 +4,7 @@
 
   <Description about="urn:mozilla:install-manifest">
     <em:id>smile@mic.instantbird.org</em:id>
-    <em:version>0.2</em:version>
+    <em:version>0.3</em:version>
     <em:type>2</em:type>
     <em:name>Smile!</em:name>
     <em:description>A panel to insert smilies into your messages</em:description>

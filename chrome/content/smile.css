@@ -1,8 +1,8 @@
 #emoticonAnchor {
-  width: 16px;
+/*  width: 16px;
   height: 16px;
   max-width: 16px;
-  max-height: 16px;
+  max-height: 16px;*/
   margin: 2px 4px 2px 4px;
 }
 
@@ -22,7 +22,7 @@
   padding: 4px;
   border: 1px solid;
   border-color: transparent;
-  border-radius: 1.5px;
+  border-radius: 2px;
   -moz-transition-property: border-color, background-color;
   -moz-transition-duration: 0.1s;
   -moz-transition-timing-function: ease-in;

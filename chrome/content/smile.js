@@ -79,13 +79,20 @@ let smile = {
         let s = smileyList[i];
         // Just take the first text representation that is there.
         let textCode = s.textCodes[0];
+        // Needed to center icons in a box if they have different dimensions.
+        let containerHBox = document.createElement("hbox");
+        containerHBox.setAttribute("align", "center");
+        containerHBox.setAttribute("pack" , "center");
+        containerHBox.classList.add("smileItem");
+        newRow.appendChild(containerHBox);
+
         let newSmiley = document.createElement("image");
         newSmiley.setAttribute("src", s.src);
         newSmiley.setAttribute("style", "padding: 1px");
         newSmiley.setAttribute("tooltiptext", textCode);
         newSmiley.onclick = function() { smile.paste(textCode); panel.hidePopup(); };
-        newSmiley.classList.add("smileItem");
-        newRow.appendChild(newSmiley);
+        //newSmiley.classList.add("smileItem");
+        containerHBox.appendChild(newSmiley);
         i++;
       }
       rows.appendChild(newRow);
