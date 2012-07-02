@@ -1,4 +1,5 @@
 Components.utils.import("resource:///modules/imServices.jsm");
+Components.utils.import("resource:///modules/imSmileys.jsm"); 
 
 let smile = {
   _smileyThemePref: "messenger.options.emoticonsTheme",
@@ -16,16 +17,30 @@ let smile = {
     this.createPanelContents();
     let anchor = document.getElementById("emoticonAnchor");
 
+    // Replace the anchor icon with one from the current theme if possible.
+    let smileIconSrc = "chrome://smile/content/grin.png";
+    let smileTextCodes = [":)", ":-)", "^^"];
+    for (let i = 0; i < smileTextCodes.length; ++i) {
+      let textCode = smileTextCodes[i];
+      try {
+        // If this does not throw, we have a smiley for this textCode.
+        getSmileRealURI(textCode);
+        smileIconSrc = "smile://" + textCode;
+        break;
+      } catch(e) { }
+    }
+    // TODO: make the icon change properly without reloading the window.
+    anchor.setAttribute("src", smileIconSrc);
+
     // TODO: Maybe make sure that there are emoticons in the current theme.
-    if (Services.prefs.getCharPref(this._smileyThemePref) == "none") {
+    if (Services.prefs.getCharPref(this._smileyThemePref) == "none" ||
+        getSmileyList().length == 0) {
       anchor.setAttribute("disabled","true");
     } else {
       anchor.removeAttribute("disabled");
     }
   },
   createPanelContents: function smile_creatPanelContents() {
-    Components.utils.import("resource:///modules/imSmileys.jsm"); 
-
     let smileyList = getSmileyList();
     let panel = document.getElementById("emoticonPanel");
 
@@ -79,7 +94,7 @@ let smile = {
         let s = smileyList[i];
         // Just take the first text representation that is there.
         let textCode = s.textCodes[0];
-        // Needed to center icons in a box if they have different dimensions.
+        // Center icons if they have different dimensions.
         let containerHBox = document.createElement("hbox");
         containerHBox.setAttribute("align", "center");
         containerHBox.setAttribute("pack" , "center");
@@ -91,7 +106,6 @@ let smile = {
         newSmiley.setAttribute("style", "padding: 1px");
         newSmiley.setAttribute("tooltiptext", textCode);
         newSmiley.onclick = function() { smile.paste(textCode); panel.hidePopup(); };
-        //newSmiley.classList.add("smileItem");
         containerHBox.appendChild(newSmiley);
         i++;
       }
@@ -105,7 +119,7 @@ let smile = {
     // Move popup anchor eight pixels (half width of the emoticon) to the right
     //panel.openPopup(anchor, "before_start", 8, 0, false, false, null);
     if (!anchor.hasAttribute("disabled"))
-      panel.openPopup(anchor, "after_start", 8, 0, false, false, null);
+      panel.openPopup(anchor, "after_start", 6, 0, false, false, null);
   },
 
   paste: function smile_paste(aText) {

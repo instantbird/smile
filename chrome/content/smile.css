@@ -1,9 +1,8 @@
 #emoticonAnchor {
-/*  width: 16px;
-  height: 16px;
+  margin-left: 4px;
+  margin-right: 4px;
   max-width: 16px;
-  max-height: 16px;*/
-  margin: 2px 4px 2px 4px;
+  max-height: 16px;
 }
 
 #emoticonAnchor[disabled] {
@@ -17,9 +16,30 @@
   padding: 5px;
 }
 
+/* Windows Luna themes */
+@media (-moz-windows-theme: luna-blue),
+       (-moz-windows-theme: luna-olive),
+       (-moz-windows-theme: luna-silver) {
+  #emoticonPanel .panel-inner-arrowcontent {
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    padding: 0;
+    margin: -9px;
+  }
+}
+
+/* Windows Classic theme. */
+@media (-moz-windows-classic) {
+  #emoticonPanel .panel-inner-arrowcontent {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    padding: 1px;
+    margin: -8px;
+  }
+}
+
 .smileItem {
-  margin: 1px;
-  padding: 4px;
+  padding: 3px;
   border: 1px solid;
   border-color: transparent;
   border-radius: 2px;
@@ -32,3 +52,4 @@
   border-color: blue;
   background-color: lightblue;
 }
+
