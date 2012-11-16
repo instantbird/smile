@@ -119,7 +119,7 @@ let smile = {
     // Move popup anchor eight pixels (half width of the emoticon) to the right
     //panel.openPopup(anchor, "before_start", 8, 0, false, false, null);
     if (!anchor.hasAttribute("disabled"))
-      panel.openPopup(anchor, "after_start", 6, 0, false, false, null);
+      panel.openPopup(anchor, "after_start", 8, 0, false, false, null);
   },
 
   paste: function smile_paste(aText) {
