@@ -123,7 +123,9 @@ let smile = {
   },
 
   paste: function smile_paste(aText) {
-   window.getBrowser().selectedConversation.focus();
+   // getTabBrowser does now what getBrowser used to do before the 
+   // tabbrowser changes for GSoC landed.
+   window.getTabBrowser().selectedConversation.focus();
    let command = "cmd_insertText";
    let controller = document.commandDispatcher.getControllerForCommand(command);
    if (controller && controller.isCommandEnabled(command)) {
