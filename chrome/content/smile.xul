@@ -5,16 +5,18 @@
          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
   <script type="application/javascript" src="chrome://smile/content/smile.js"/>
-  <statusbar id="convWindow-statusbar">
-    <vbox position="1" align="center" pack="center">
-      <image id="emoticonAnchor" onclick="smile.openPanel();"/>
-    </vbox>
-    <panel id="emoticonPanel" type="arrow">
-      <grid>
-        <columns id="emoticonPanelColumns"/>
-        <rows id="emoticonPanelRows"/>
-      </grid>
-    </panel>
-
-  </statusbar>
+  <window id="convWindow">
+    <statusbar id="convWindow-statusbar">
+      <vbox position="1" align="center" pack="center">
+        <image id="emoticonAnchor" onclick="smile.openPanel();"/>
+      </vbox>
+      <panel id="emoticonPanel" type="arrow">
+        <grid>
+          <columns id="emoticonPanelColumns"/>
+          <rows id="emoticonPanelRows"/>
+        </grid>
+      </panel>
+  
+    </statusbar>
+  </window>
 </overlay>
