@@ -1,7 +1,7 @@
 Components.utils.import("resource:///modules/imServices.jsm");
 Components.utils.import("resource:///modules/imSmileys.jsm"); 
 
-let smile = {
+var smile = {
   _smileyThemePref: "messenger.options.emoticonsTheme",
 
   handleEvent: function(event) {
